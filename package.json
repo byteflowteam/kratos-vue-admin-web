@@ -4,6 +4,7 @@
 	"scripts": {
 		"dev": "vite --force",
 		"build": "vite build",
+		"build:test": "cross-env NODE_ENV=test vite build --mode test",
 		"build:prod": "cross-env NODE_ENV=production vite build --mode production",
 		"lint-fix": "eslint --fix --ext .js --ext .jsx --ext .vue src/",
 		"prepare": "husky install"
