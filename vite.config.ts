@@ -29,11 +29,9 @@ const viteConfig: UserConfig = {
 		open: VITE_OPEN,
 		proxy: {
 			'/api': {
-				target: 'http://127.0.0.1:8001',
-				// 刘航恺本地
-				// target: 'http://192.168.2.110:8001',
+				// target: 'http://127.0.0.1:8001',
 				// 测试环境
-				// target: 'http://192.168.2.121:8001',
+				target: 'http://kva-api.bullteam.cn',
 				ws: true,
 				changeOrigin: true,
 				rewrite: (path) => path.replace(/^\/api/, '/'),
