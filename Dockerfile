@@ -1,5 +1,5 @@
 FROM nginx
-LABEL MAINTAINER="PandaX"
+LABEL MAINTAINER="Kratos-vue-admin"
 
 COPY deploy/default.conf /etc/nginx/conf.d/default.conf
 COPY deploy/dist /usr/share/nginx/html/

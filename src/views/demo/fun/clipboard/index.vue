@@ -25,7 +25,7 @@ export default {
 	setup() {
 		const { copyText } = commonFunction();
 		const state = reactive({
-			copyVal: 'https://gitee.com/PandaAdmin/PandaX',
+			copyVal: 'https://github.com/byteflowteam/krators-vue-admin-web',
 			shearVal: '',
 		});
 		// 页面加载时

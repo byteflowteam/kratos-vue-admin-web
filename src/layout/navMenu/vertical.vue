@@ -64,7 +64,6 @@ export default defineComponent({
     const theme = useThemeConfigStateStore();
     const route = useRoute();
     const state = reactive({
-      // 修复：https://gitee.com/PandaAdmin/PandaX/issues/I3YX6G
       defaultActive: route.meta.isDynamic ? route.meta.isDynamicPath : route.path,
       isCollapse: false,
     });
@@ -101,7 +100,6 @@ export default defineComponent({
     });
     // 路由更新时
     onBeforeRouteUpdate((to) => {
-      // 修复：https://gitee.com/PandaAdmin/PandaX/issues/I3YX6G
       state.defaultActive = setParentHighlight(to);
       proxy.mittBus.emit("onMenuClick");
       const clientWidth = document.body.clientWidth;

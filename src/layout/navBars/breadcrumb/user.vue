@@ -217,7 +217,7 @@ export default {
           })
           .catch(() => {});
       } else if (path === "wareHouse") {
-        // window.open("https://gitee.com/XM-GO/PandaX");
+    
       } else {
         router.push(path);
       }
