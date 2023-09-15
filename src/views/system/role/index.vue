@@ -48,18 +48,18 @@
       <!--数据表格-->
       <el-table v-loading="state.loading" :data="state.roleList" @selection-change="handleSelectionChange">
         <el-table-column type="selection" width="55" align="center" />
-        <el-table-column label="角色编号" prop="roleId" />
+        <el-table-column label="编号" prop="roleId" />
         <el-table-column label="角色名称" prop="roleName" :show-overflow-tooltip="true" />
-        <el-table-column label="权限字符" prop="roleKey" :show-overflow-tooltip="true" />
+        <el-table-column label="权限字符" prop="roleKey" :show-overflow-tooltip="true" /> -->
         <el-table-column label="显示顺序" prop="sort" />
         <el-table-column label="状态" align="center">
           <template #default="scope">
-            <el-switch v-model="scope.row.status" :active-value="0" :inactive-value="1"
+            <el-switch v-model="scope.row.status" :active-value="1" :inactive-value="2"
               @click="handleStatusChange(scope.row)"></el-switch>
           </template>
         </el-table-column>
         <el-table-column label="创建时间" align="center" prop="createTime">
-          <template #default="scope">
+          <template #default="scope" v-auth="'system:role:edit'">
             <span>{{ dateStrFormat(scope.row?.createTime) }}</span>
           </template>
         </el-table-column>
@@ -96,7 +96,7 @@
       <!-- 分页设置-->
       <div v-show="state.total > 0">
         <el-divider></el-divider>
-        <el-pagination background :total="state.total" :current-page="state.queryParams.pageNum"
+        <el-pagination background :total="state.total" :page-sizes="[10, 20, 30]" :current-page.sync="state.queryParams.pageNum"
           :page-size="state.queryParams.pageSize" layout="total, sizes, prev, pager, next, jumper"
           @size-change="handleSizeChange" @current-change="handleCurrentChange" />
       </div>
@@ -400,13 +400,13 @@ const getDeptAllCheckedKeys = () => {
 };
 /** 搜索按钮操作 */
 const handleQuery = () => {
-  state.queryParams.pageNum = 1;
+  // state.queryParams.pageNum = 1;
   getList();
 };
 /** 查询菜单树结构 */
 const getMenuTreeselect = () => {
   menuTreeselect().then((response) => {
-    state.menuOptions = response?.data?.data;
+    state.menuOptions = response?.data?.list;
   });
 };
 /** 查询Api树结构 */
@@ -447,7 +447,8 @@ const handleSelectionChange = (selection: any) => {
 };
 // 角色状态修改
 const handleStatusChange = (row: any) => {
-  let text = row.status === "0" ? "启用" : "停用";
+  // console.log(row.status)
+  let text = row.status == 1 ? "启用" : "停用";
   ElMessageBox({
     closeOnClickModal: false,
     closeOnPressEscape: false,
@@ -463,8 +464,10 @@ const handleStatusChange = (row: any) => {
     .then(() => {
       ElMessage.success(text + "成功");
     })
-    .catch(function () {
-      row.status = row.status === "0" ? "1" : "0";
+    .catch((action: Action) => {
+      if (action === 'cancel') {
+        row.status = row.status == 2 ? 1 : 2
+      }
     });
 };
 /** 分配数据权限操作 */
