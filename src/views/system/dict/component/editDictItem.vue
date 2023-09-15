@@ -88,10 +88,10 @@ export default {
       },
       // 字典状态数据字典
       statusOptions: [{
-        dictValue: "0",
+        dictValue: 1,
         dictLabel: "正常"
         },{
-        dictValue: "1",
+        dictValue: 2,
         dictLabel: "禁用"
         }],
       // 字典树选项
