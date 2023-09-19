@@ -32,7 +32,7 @@
         <div class="card-header">
           <span class="card-header-text">菜单列表</span>
           <div>
-            <el-button type="primary" plain v-auth="'system:dept:add'" @click="onOpenAddMenu">
+            <el-button type="primary" plain v-auth="'system:menu:add'" @click="onOpenAddMenu">
               <SvgIcon name="elementPlus" />
               新增
             </el-button>
@@ -65,9 +65,9 @@
             </el-tag>
           </template>
         </el-table-column>
-        <el-table-column prop="status" label="显示隐藏" width="100">
+        <el-table-column prop="isHide" label="显示隐藏" width="100">
           <template #default="scope">
-            <el-tag :type="scope.row.status === '1' ? 'danger' : 'success'" disable-transitions>{{ isHideFormat(scope.row)
+            <el-tag :type="scope.row.isHide == '1' ? 'success' : 'danger'" disable-transitions>{{ isHideFormat(scope.row)
               || '-- --' }}
             </el-tag>
           </template>
@@ -87,7 +87,7 @@
                 </el-button>
               </div>
               <div>
-                <el-button text type="primary" v-auth="'system:menu:edit'" @click="onOpenAddMenu(scope.row)">
+                <el-button text type="primary" v-auth="'system:menu:add'" @click="onOpenAddMenu(scope.row)">
                   <SvgIcon name="elementPlus" />
                   新增
                 </el-button>
