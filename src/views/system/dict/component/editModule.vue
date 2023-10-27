@@ -21,8 +21,8 @@
           <el-radio-group v-model="ruleForm.status">
             <el-radio
               v-for="dict in statusOptions"
-              :key="parseInt(dict.dictValue)"
-              :label="parseInt(dict.dictValue)"
+              :key="dict.dictValue"
+              :label="dict.dictValue"
               >{{ dict.dictLabel }}
             </el-radio>
           </el-radio-group>
@@ -76,10 +76,10 @@ export default {
       },
       // 字典状态数据字典
       statusOptions: [{
-        dictValue: "0",
+        dictValue: 1,
         dictLabel: "正常"
       },{
-        dictValue: "1",
+        dictValue: 2,
         dictLabel: "禁用"
       }],
       // 字典树选项
